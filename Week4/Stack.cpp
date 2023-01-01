@@ -11,11 +11,7 @@ my_cube::Cube& Stack::get_top_stack(){
   int top_index_d = get_Stack_length();
 
   top_index_d = (top_index_d == 0)?top_index_d:(top_index_d - 1);
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> e9594f269132416afec892bd081f13a2cf6add3f
   return this->ownCUBE[top_index_d];
 }
 
