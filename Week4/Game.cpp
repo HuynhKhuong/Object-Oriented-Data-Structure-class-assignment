@@ -39,27 +39,51 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     - Source stack (GAME)
     - Destination stack (created via heap)
     - Temp_stack (temporarily store cubes)
+  */
 
+  /*
     Solution description: 
     step 1:
     yellow -> middle
     purple -> destination
     yellow -> destination 
+  */
+  move_cube(source_cont, middle_cont);
+  move_cube(source_cont, destination);
+  move_cube(middle_cont, destination);
+  /*
     step 2: 
     orange -> middle 
     yellow -> source
     purple -> middle
     yellow -> middle
+  */
+  move_cube(source_cont, middle_cont);
+  move_cube(destination, source_cont);
+  move_cube(destination, middle_cont);
+  move_cube(source_cont, middle_cont);
+
+  /*
     step 3: 
     blue -> destination
     yellow -> destination
     purple -> source
     yellow -> source 
     orange -> destination
+  */
+  move_cube(source_cont, destination);
+  move_cube(middle_cont, destination);
+  move_cube(middle_cont, source_cont);
+  move_cube(destination, source_cont);
+  move_cube(middle_cont, destination);
+
+  /*
     step 4: 
     yellow -> middle
     purple -> destination
     yellow -> destination
   */
-  //move_cube()
+  move_cube(source_cont, middle_cont);
+  move_cube(source_cont, destination);
+  move_cube(middle_cont, destination);
 }
