@@ -23,6 +23,25 @@ Game::Game():Stack(){
 
 }
 
-void Game::solve(){
+void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont){
   //pre-declaration, no logic inside
+  /*
+    This problems require 3 stacks: 
+    - Source stack (GAME)
+    - Destination stack (created via heap)
+    - Temp_stack (temporarily store cubes)
+
+    Solution description: 
+    step 1:
+    yellow -> source
+    purple -> middle
+    yellow -> middle 
+    step 2: 
+    orange ->source 
+    yellow -> source
+    
+  */
+  
+
+  
 }

@@ -8,7 +8,7 @@ class Game : public stack::Stack{
 public: 
   //Default constructor: 
   Game();
-  void solve();
+  void solve(stack::Stack &source_cont, stack::Stack &middle_cont);
 
 private: 
   stack::Stack _stack;

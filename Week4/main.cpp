@@ -4,7 +4,7 @@
 
 int main(){
   Game _mygame;
-  
-  _mygame.solve();
+
+  //_mygame.solve();
   return 0;
 }
