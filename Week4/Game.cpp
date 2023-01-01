@@ -33,14 +33,27 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont){
 
     Solution description: 
     step 1:
+    yellow -> middle
+    purple -> destination
+    yellow -> destination 
+    step 2: 
+    orange -> middle 
     yellow -> source
     purple -> middle
-    yellow -> middle 
-    step 2: 
-    orange ->source 
-    yellow -> source
-    
+    yellow -> middle
+    step 3: 
+    blue -> destination
+    yellow -> destination
+    purple -> source
+    yellow -> source 
+    orange -> destination
+    step 4: 
+    yellow -> middle
+    purple -> destination
+    yellow -> destination
   */
+
+  
   
 
   
