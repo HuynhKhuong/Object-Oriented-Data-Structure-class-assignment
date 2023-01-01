@@ -32,7 +32,7 @@ Game::Game():Stack(){
 
 }
 
-void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont){
+void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::Stack destination){
   //pre-declaration, no logic inside
   /*
     This problems require 3 stacks: 
