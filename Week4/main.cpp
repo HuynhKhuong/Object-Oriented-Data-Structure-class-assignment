@@ -27,8 +27,6 @@ int main(){
   _testgame.remove_top_Stack();
   std::cout << "check result: "<< (_testgame.get_top_stack()).get_color() << std::endl;
   _testgame.remove_top_Stack();
-  std::cout << "check result: "<< (_testgame.get_top_stack()).get_color() << std::endl;
-  _testgame.remove_top_Stack();
 
   std::cout << "check length: " <<  _testgame.get_Stack_length() << std::endl;
   return 0;

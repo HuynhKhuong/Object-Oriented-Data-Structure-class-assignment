@@ -49,8 +49,8 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     yellow -> destination 
   */
   move_cube(source_cont, middle_cont);
-  // move_cube(source_cont, destination);
-  // move_cube(middle_cont, destination);
+  move_cube(source_cont, destination);
+  move_cube(middle_cont, destination);
   /*
     step 2: 
     orange -> middle 
