@@ -3,7 +3,7 @@
 
 #include "Stack.hpp"
 
-class Game{
+class Game : public stack::Stack{
 
 public: 
   //Default constructor: 
@@ -12,6 +12,7 @@ public:
 
 private: 
   stack::Stack _stack;
+
 };
 
 #endif
