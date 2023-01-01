@@ -1,5 +1,14 @@
 #include "Game.hpp"
 
+static void move_cube(stack::Stack &source_cont, stack::Stack &destination){
+  //create temporary containers for transporting cubes between 3 stacks
+  my_cube::Cube temp_cont;
+  temp_cont = source_cont.get_top_stack();
+
+  destination.Push_Stack(temp_cont);
+  source_cont.remove_top_Stack(); //only remove the top stack once the push stack is done
+}
+
 Game::Game():Stack(){
   /*default constructor, creates 4 defaults cubes on stack
     Cube info: 
@@ -52,9 +61,5 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont){
     purple -> destination
     yellow -> destination
   */
-
-  
-  
-
-  
+  //move_cube()
 }
