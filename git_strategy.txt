@@ -1,0 +1,25 @@
+Steps for micro-commit: 
+1. Set the goal
+2. If tests pass, save the progress; otherwise, revert to a last known good state
+3. Wrap up the task
+
+A. Set the goal: 
+git commit --allow-empty --no-verify -m "message"
+
+B. saveing the progress: 
+Scenarios: At this point, I have completed a minimal slice of my work.
+It's typically all tests passing. 
+-> Save the progress
+
+gid add 
+git commit --no-verify -m "message"
+
+C. Polishing & Wrapping it up
+
+Retain a clean history and eliminate the work-in-progress commits:
+- reset the state softly
+- staging everything
+- amending the changes to the last commit
+git reset --soft "$(git history)"
+git add -a
+git commit --amend

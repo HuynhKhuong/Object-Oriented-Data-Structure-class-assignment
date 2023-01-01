@@ -8,7 +8,10 @@ int Stack::get_Stack_length(){
 
 my_cube::Cube& Stack::get_top_stack(){
   //as designed, Cube on the top stack has the biggest index
-  int top_index_d = get_Stack_length()-1;
+  int top_index_d = get_Stack_length();
+
+  top_index_d = (top_index_d == 0)?top_index_d:(top_index_d - 1);
+  
   return this->ownCUBE[top_index_d];
 }
 
