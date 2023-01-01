@@ -14,12 +14,16 @@ int main(){
 
   _mygame.solve(_testgame, middle_stack, final_stack);
   
-  std::cout << "check result: "<< (_testgame.get_top_stack()).get_color() << std::endl;
-  _testgame.remove_top_Stack();
-  std::cout << "check result: "<< (_testgame.get_top_stack()).get_color() << std::endl;
-  _testgame.remove_top_Stack();
-  std::cout << "check length: " <<  _testgame.get_Stack_length() << std::endl;
+  // std::cout << "check result: "<< (_testgame.get_top_stack()).get_color() << std::endl;
+  // _testgame.remove_top_Stack();
+  // std::cout << "check result: "<< (_testgame.get_top_stack()).get_color() << std::endl;
+  // _testgame.remove_top_Stack();
+  // std::cout << "check length: " <<  _testgame.get_Stack_length() << std::endl;
 
+  std::cout << "check result: "<< (final_stack.get_top_stack()).get_color() << std::endl;
+  final_stack.remove_top_Stack();
+  std::cout << "check result: "<< (final_stack.get_top_stack()).get_color() << std::endl;
+  final_stack.remove_top_Stack();
   std::cout << "check result: "<< (final_stack.get_top_stack()).get_color() << std::endl;
   final_stack.remove_top_Stack();
   std::cout << "check result: "<< (final_stack.get_top_stack()).get_color() << std::endl;
