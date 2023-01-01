@@ -32,7 +32,7 @@ Game::Game():Stack(){
 
 }
 
-void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::Stack destination){
+void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::Stack& destination){
   //pre-declaration, no logic inside
   /*
     This problems require 3 stacks: 
@@ -71,11 +71,11 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     yellow -> source 
     orange -> destination
   */
-  // move_cube(source_cont, destination);
-  // move_cube(middle_cont, destination);
-  // move_cube(middle_cont, source_cont);
-  // move_cube(destination, source_cont);
-  // move_cube(middle_cont, destination);
+  move_cube(source_cont, destination);
+  move_cube(middle_cont, destination);
+  move_cube(middle_cont, source_cont);
+  move_cube(destination, source_cont);
+  move_cube(middle_cont, destination);
 
   /*
     step 4: 
