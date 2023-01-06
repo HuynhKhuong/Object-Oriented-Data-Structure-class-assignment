@@ -1,6 +1,7 @@
 #include "Game.hpp"
+#include <iostream>
 
-static void move_cube(stack::Stack &source_cont, stack::Stack &destination){
+void Game::move_cube(stack::Stack &source_cont, stack::Stack &destination){
   //create temporary containers for transporting cubes between 3 stacks
   my_cube::Cube temp_cont;
   temp_cont = source_cont.get_top_stack();
@@ -9,7 +10,8 @@ static void move_cube(stack::Stack &source_cont, stack::Stack &destination){
   source_cont.remove_top_Stack(); //only remove the top stack once the push stack is done
 }
 
-Game::Game():Stack(){
+Game::Game():_stack_des(),_stack_trans(){
+  
   /*default constructor, creates 4 defaults cubes on stack
     Cube info: 
     - Blue, length = 4
@@ -25,14 +27,16 @@ Game::Game():Stack(){
   my_cube::Cube purple_cube(2, PURPLE);
   my_cube::Cube yellow_cube(1, YELLOW);
 
-  Push_Stack(blue_cube);
-  Push_Stack(orange_cube);
-  Push_Stack(purple_cube);
-  Push_Stack(yellow_cube);
+  //_stack_scr declaration
+  _stack_scr.Push_Stack(blue_cube);
+  _stack_scr.Push_Stack(orange_cube);
+  _stack_scr.Push_Stack(purple_cube);
+  _stack_scr.Push_Stack(yellow_cube);
 
+  //Other stack are kept as stack's default constructor 
 }
 
-void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::Stack& destination){
+void Game::solve(){
   //pre-declaration, no logic inside
   /*
     This problems require 3 stacks: 
@@ -40,7 +44,7 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     - Destination stack (created via heap)
     - Temp_stack (temporarily store cubes)
   */
-
+  std::cout << "Solution 1" << std::endl;
   /*
     Solution description: 
     step 1:
@@ -48,9 +52,9 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     purple -> destination
     yellow -> destination 
   */
-  move_cube(source_cont, middle_cont);
-  move_cube(source_cont, destination);
-  move_cube(middle_cont, destination);
+  move_cube(this->_stack_scr, this->_stack_trans);
+  move_cube(this->_stack_scr, this->_stack_des);
+  move_cube(this->_stack_trans, this->_stack_des);
   /*
     step 2: 
     orange -> middle 
@@ -58,10 +62,10 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     purple -> middle
     yellow -> middle
   */
-  move_cube(source_cont, middle_cont);
-  move_cube(destination, source_cont);
-  move_cube(destination, middle_cont);
-  move_cube(source_cont, middle_cont);
+  move_cube(this->_stack_scr, this->_stack_trans);
+  move_cube(this->_stack_des, this->_stack_scr);
+  move_cube(this->_stack_des, this->_stack_trans);
+  move_cube(this->_stack_scr, this->_stack_trans);
 
   /*
     step 3: 
@@ -71,11 +75,11 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     yellow -> source 
     orange -> destination
   */
-  move_cube(source_cont, destination);
-  move_cube(middle_cont, destination);
-  move_cube(middle_cont, source_cont);
-  move_cube(destination, source_cont);
-  move_cube(middle_cont, destination);
+  move_cube(this->_stack_scr, this->_stack_des);
+  move_cube(this->_stack_trans, this->_stack_des);
+  move_cube(this->_stack_trans, this->_stack_scr);
+  move_cube(this->_stack_des, this->_stack_scr);
+  move_cube(this->_stack_trans, this->_stack_des);
 
   /*
     step 4: 
@@ -83,8 +87,17 @@ void Game::solve(stack::Stack &source_cont, stack::Stack &middle_cont, stack::St
     purple -> destination
     yellow -> destination
   */
-  move_cube(source_cont, middle_cont);
-  move_cube(source_cont, destination);
-  move_cube(middle_cont, destination);
-  
+  move_cube(this->_stack_scr, this->_stack_trans);
+  move_cube(this->_stack_scr, this->_stack_des);
+  move_cube(this->_stack_trans, this->_stack_des);
+  print_m_stack();
+}
+
+void Game::print_m_stack(){
+  std::cout << "source stack's length is: " << std::endl;
+  _stack_scr.print_stack();
+  std::cout << "trans stack's length is: " << std::endl;
+  _stack_trans.print_stack();
+  std::cout << "destination stack's length is: " << std::endl;
+  _stack_des.print_stack();
 }

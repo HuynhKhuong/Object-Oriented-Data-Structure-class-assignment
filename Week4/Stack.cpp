@@ -1,5 +1,5 @@
 #include "Stack.hpp"
-
+#include <iostream>
 using namespace stack;
 
 int Stack::get_Stack_length(){
@@ -39,4 +39,19 @@ void Stack::Push_Stack(const my_cube::Cube & additional_cube){
       this->ownCUBE.push_back(additional_cube);
     }
   }
+}
+
+void Stack::print_stack(){
+  bool stack_is_empty_b = (get_Stack_length() == 0); 
+  if(stack_is_empty_b){
+    std::cout << "Stack is empty" << std::endl;
+  }
+  else{
+    std::cout << "stack length is: ";
+    for(int i = 0; i < (get_Stack_length()); i++){
+      std:: cout << this->ownCUBE[i].get_length() << " ";
+    }
+    std::cout << std::endl;
+  }
+
 }

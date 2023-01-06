@@ -14,7 +14,7 @@ class Stack{
     my_cube::Cube& get_top_stack();
     void remove_top_Stack();
     int get_Stack_length();
-
+    void print_stack();
   private:
     std::vector<my_cube::Cube> ownCUBE; //as designed, top cube on stack has the biggest index, the lower ones have the index descending
 
