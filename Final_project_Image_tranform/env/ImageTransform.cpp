@@ -11,8 +11,8 @@
 
 Write your name and email address in the comment space here:
 
-Name:
-Email:
+Name: Huynh Khuong
+Email: khuong.huynhdiendientu@hcmut.edu.vn
 
 (...end multi-line comment.)
 ******************** */
@@ -194,6 +194,25 @@ PNG illinify(PNG image) {
 * @return The watermarked image.
 */
 PNG watermark(PNG firstImage, PNG secondImage) {
+  //Assuming the two image are placed at the upper-left corner overlapping at the same coordinates
+  unsigned int first_image_height = firstImage.height(); //x max
+  unsigned int first_image_width = firstImage.width(); //y max
+  
+  unsigned int second_image_height = secondImage.height(); //x max
+  unsigned int second_image_width = secondImage.width(); //y max
+  double target_l = 0;
+  //Second image are overlapping first image, check range inside the second image only
+  for(unsigned int y = 0; y < first_image_height; y++){
+    for(unsigned int x = 0; x < first_image_width; x ++){
+      //check out range condition
+      if(y >= second_image_height) continue;
+      if(x >= second_image_width) continue;
+      //check mark condition
+      if(secondImage.getPixel(x,y).l < 1) continue;
 
+      target_l = firstImage.getPixel(x,y).l + 0.2; 
+      firstImage.getPixel(x,y).l = (target_l  > 1)?1:(target_l);
+    }
+  }
   return firstImage;
 }
