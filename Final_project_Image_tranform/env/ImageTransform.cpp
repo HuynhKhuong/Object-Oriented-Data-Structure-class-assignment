@@ -140,21 +140,19 @@ PNG createSpotlight(PNG image, int centerX, int centerY) {
  * @return The illinify'd image.
 **/
 PNG illinify(PNG image) {
-  // //Iterate via all pixels of image
-  // unsigned int image_height = image.height(); //x max
-  // unsigned int image_width = image.width(); //y max
+  //Iterate via all pixels of image
+  unsigned int image_height = image.height(); //x max
+  unsigned int image_width = image.width(); //y max
 
-  // HSLAPixel current_pixel;
-  // bool close_to_orange = false;
-  // for(unsigned int y = 0; y < image_height; y++){
-  //   for(unsigned int x = 0; x < image_width; x ++){
-  //     current_pixel = image.getPixel(x, y); 
-  //     close_to_orange = hue_orange_blue_range(current_pixel);
-  //     if(close_to_orange) image.getPixel(x, y).h = HUE_ORANGE;
-  //     else image.getPixel(x, y).h = HUE_BLUE;
-  //   }
-  // }
-  // return image;
+  bool close_to_orange = false;
+  for(unsigned int y = 0; y < image_height; y++){
+    for(unsigned int x = 0; x < image_width; x ++){
+      close_to_orange = hue_orange_blue_range(image.getPixel(x, y));
+      if(close_to_orange) image.getPixel(x, y).h = HUE_ORANGE;
+      else image.getPixel(x, y).h = HUE_BLUE;
+    }
+  }
+  return image;
 }
 
  
