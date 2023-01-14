@@ -33,22 +33,44 @@ Email:
 #define HUE_ORANGE  11.0
 #define HUE_BLUE    216.0
 
+#define CIRCLE_ROUND  360.0
 using uiuc::PNG;
 using uiuc::HSLAPixel;
 
 //Create a boundary check function to check whether the hue value is in the range or not 
 static double hue_boundaries_check(const HSLAPixel& pixel) {
-  if(pixel.h > HUE_MAX) return HUE_MAX;
+  if(pixel.h > HUE_MAX) return (pixel.h - HUE_MAX);
   if(pixel.h < HUE_MIN) return HUE_MIN;
   return pixel.h;
 }
 
+static double gap_check(const double threshold, const double input){
+  //gap check is done by checking 2 cases: 
+  //case 1: gap check between input and the threshold IN THE SAME CYCLE
+  //case 2: gap check between input and the threshold IN THE NEXT/PAST CYCLE
+  //we check NEXT CYCLE when input > threshold
+  //we check PAST CYCLE when input < threshold
+  double result = 0;
+  double gap_in_same_cycle = 0; 
+  double gap_in_diff_cycle = 0;
+  if(input > threshold){
+    gap_in_same_cycle = input - threshold;
+    gap_in_diff_cycle = (CIRCLE_ROUND - input) + threshold;
+  }
+  else{
+    gap_in_same_cycle = threshold - input;
+    gap_in_diff_cycle = input + (CIRCLE_ROUND - threshold);
+  }
+  return (gap_in_same_cycle > gap_in_diff_cycle)?gap_in_diff_cycle:gap_in_same_cycle ;
+}
+
 static bool hue_orange_blue_range(const HSLAPixel& pixel){
   bool close_to_orange = false;
-  const double average_d = (HUE_BLUE + HUE_ORANGE)/2;
   const double pixel_h = hue_boundaries_check(pixel);
- 
-  if(pixel_h > average_d) close_to_orange = false;
+  const double blue_range = gap_check(HUE_BLUE, pixel_h);
+  const double orange_range = gap_check(HUE_ORANGE, pixel_h);
+  
+  if(blue_range > orange_range) close_to_orange = false;
   else close_to_orange = true;
 
   return close_to_orange;
@@ -122,15 +144,18 @@ PNG illinify(PNG image) {
   // unsigned int image_width = image.width(); //y max
 
   // HSLAPixel current_pixel;
-
+  // bool close_to_orange = false;
   // for(unsigned int y = 0; y < image_height; y++){
   //   for(unsigned int x = 0; x < image_width; x ++){
-  //     current_pixel = image.getPixel(x, y);
-
+  //     current_pixel = image.getPixel(x, y); 
+  //     close_to_orange = hue_orange_blue_range(current_pixel);
+  //     if(close_to_orange) image.getPixel(x, y).h = HUE_ORANGE;
+  //     else image.getPixel(x, y).h = HUE_BLUE;
   //   }
   // }
   return image;
 }
+
  
 
 /**
