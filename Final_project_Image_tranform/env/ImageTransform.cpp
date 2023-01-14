@@ -16,9 +16,30 @@ Email:
 
 (...end multi-line comment.)
 ******************** */
+#define MIN_COMMON  0.0
+
+#define HUE_MAX   360.0
+#define HUE_MIN   MIN_COMMON
+
+#define SATURATION_MAX  1.0
+#define SATURATION_MIN  MIN_COMMON
+
+#define LUMINANCE_MAX   1.0
+#define LUMINANCE_MIN   MIN_COMMON
+
+#define ALPHA_MAX   1.0
+#define ALPHA_MIN   MIN_COMMON
 
 using uiuc::PNG;
 using uiuc::HSLAPixel;
+
+//Create a boundary check function to check whether the hue value is in the range or not 
+static double hue_boundaries_check(const HSLAPixel& pixel) 
+{
+  if(pixel.h > HUE_MAX) return HUE_MAX;
+  if(pixel.h < HUE_MIN) return HUE_MIN;
+  return pixel.h;
+}
 
 /**
  * Returns an image that has been transformed to grayscale.
@@ -84,7 +105,7 @@ PNG createSpotlight(PNG image, int centerX, int centerY) {
  * @return The illinify'd image.
 **/
 PNG illinify(PNG image) {
-
+  
   return image;
 }
  
