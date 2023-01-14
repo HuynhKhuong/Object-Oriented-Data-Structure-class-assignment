@@ -137,10 +137,14 @@ PNG grayscale(PNG image) {
 PNG createSpotlight(PNG image, int centerX, int centerY) {
   unsigned int image_height = image.height(); //x max
   unsigned int image_width = image.width(); //y max
-
+  unsigned int euclide_dis = 0;
+  float remaining_brightness = 0;
   for(unsigned int y = 0; y < image_height; y++){
     for(unsigned int x = 0; x < image_width; x ++){
-
+      euclide_dis = Euclide_distance(x, y, centerX, centerY);
+      remaining_brightness = ((0.5*euclide_dis/100) > 0.8)?(0.2):(1 - 0.5*euclide_dis/100);
+      //remodify brightness of pixel, add boundary check: the l loss won't exceed 80%
+      image.getPixel(x,y).l = image.getPixel(x,y).l*remaining_brightness;
     }
   }
 
