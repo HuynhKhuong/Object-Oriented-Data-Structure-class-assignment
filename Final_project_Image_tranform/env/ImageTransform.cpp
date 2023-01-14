@@ -70,8 +70,9 @@ static bool hue_orange_blue_range(const HSLAPixel& pixel){
   const double blue_range = gap_check(HUE_BLUE, pixel_h);
   const double orange_range = gap_check(HUE_ORANGE, pixel_h);
   
-  if(blue_range > orange_range) close_to_orange = false;
-  else close_to_orange = true;
+  if(blue_range > orange_range) close_to_orange = true;
+  else close_to_orange = false;
+
 
   return close_to_orange;
 }
@@ -153,7 +154,7 @@ PNG illinify(PNG image) {
   //     else image.getPixel(x, y).h = HUE_BLUE;
   //   }
   // }
-  return image;
+  // return image;
 }
 
  
