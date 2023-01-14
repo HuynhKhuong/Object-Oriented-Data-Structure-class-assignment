@@ -11,9 +11,17 @@
 #include <sstream>
 
 namespace uiuc {
-
-  // Put your HSLAPixel class definition here.
-  // (Remember to end it with a semicolon!)
-
+  /*
+    Test 1: HSLAPixel declaration
+    h, s, l ,a are public members (I would modify this scope later), they all have range.
+  */
+  class HSLAPixel{
+    public: 
+      HSLAPixel():h(0),s(0.0),l(0.0),a(0.0){}; //default value 
+      double h; //hue value
+      double s;
+      double l;
+      double a; 
+  };
 
 }
