@@ -30,17 +30,29 @@ Email:
 #define ALPHA_MAX   1.0
 #define ALPHA_MIN   MIN_COMMON
 
+#define HUE_ORANGE  11.0
+#define HUE_BLUE    216.0
+
 using uiuc::PNG;
 using uiuc::HSLAPixel;
 
 //Create a boundary check function to check whether the hue value is in the range or not 
-static double hue_boundaries_check(const HSLAPixel& pixel) 
-{
+static double hue_boundaries_check(const HSLAPixel& pixel) {
   if(pixel.h > HUE_MAX) return HUE_MAX;
   if(pixel.h < HUE_MIN) return HUE_MIN;
   return pixel.h;
 }
 
+static bool hue_orange_blue_range(const HSLAPixel& pixel){
+  bool close_to_orange = false;
+  const double average_d = (HUE_BLUE + HUE_ORANGE)/2;
+  const double pixel_h = hue_boundaries_check(pixel);
+ 
+  if(pixel_h > average_d) close_to_orange = false;
+  else close_to_orange = true;
+
+  return close_to_orange;
+}
 /**
  * Returns an image that has been transformed to grayscale.
  *
@@ -105,7 +117,18 @@ PNG createSpotlight(PNG image, int centerX, int centerY) {
  * @return The illinify'd image.
 **/
 PNG illinify(PNG image) {
-  
+  // //Iterate via all pixels of image
+  // unsigned int image_height = image.height(); //x max
+  // unsigned int image_width = image.width(); //y max
+
+  // HSLAPixel current_pixel;
+
+  // for(unsigned int y = 0; y < image_height; y++){
+  //   for(unsigned int x = 0; x < image_width; x ++){
+  //     current_pixel = image.getPixel(x, y);
+
+  //   }
+  // }
   return image;
 }
  
