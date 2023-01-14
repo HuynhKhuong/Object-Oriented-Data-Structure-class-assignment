@@ -76,6 +76,18 @@ static bool hue_orange_blue_range(const HSLAPixel& pixel){
 
   return close_to_orange;
 }
+
+//functions calculating Euclide distance
+
+static unsigned int Euclide_distance(int current_x,int current_y, int center_x, int center_y){
+  int gap_x = current_x - center_x;  //subtract result won't exceed the limit of a member itself
+  int gap_y = current_y - center_y;
+
+  unsigned int Euclide_distance_sq = (gap_x * gap_x)+(gap_y*gap_y);
+  return sqrt(Euclide_distance_sq);
+}
+
+
 /**
  * Returns an image that has been transformed to grayscale.
  *
@@ -123,6 +135,14 @@ PNG grayscale(PNG image) {
  * @return The image with a spotlight.
  */
 PNG createSpotlight(PNG image, int centerX, int centerY) {
+  unsigned int image_height = image.height(); //x max
+  unsigned int image_width = image.width(); //y max
+
+  for(unsigned int y = 0; y < image_height; y++){
+    for(unsigned int x = 0; x < image_width; x ++){
+
+    }
+  }
 
   return image;
   
